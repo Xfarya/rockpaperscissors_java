@@ -1,12 +1,16 @@
 package com.example.rps;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RPSTest {
+    String opponentMove = "scissors";
+
     @Test
-    void main() {
-        assertTrue(true);
+    public void rockBeatsScissors() {
+        assertEquals("You win", RPS.rockVScissors("rock"));
     }
 }
