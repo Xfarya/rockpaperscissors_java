@@ -1,14 +1,17 @@
 package com.example.rps;
 
+import java.util.Random;
+
 public class RPS {
 
     public static String result;
+    public static String opponentMove;
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
     }
 
-    public static String result(String myMove, String opponentMove) {
+    public String result(String myMove) {
+        opponentMove = opponentMove();
         if (opponentMove.equals(myMove)) {
             result = "You tied!";
         } else if (opponentMove.equals("scissors")) {
@@ -34,4 +37,12 @@ public class RPS {
         }
             return result;
     }
+
+    public String opponentMove() {
+        String[] rps = {"rock", "paper", "scissors"};
+        String computerMove = rps[new Random().nextInt(rps.length)];
+        return computerMove;
+    }
+
 }
+
