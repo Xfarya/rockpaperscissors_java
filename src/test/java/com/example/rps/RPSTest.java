@@ -1,16 +1,14 @@
 package com.example.rps;
 
-import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+
 
 class RPSTest {
     RPS rps = new RPS();
@@ -31,8 +29,8 @@ class RPSTest {
 
     @Test
     public void rockTiesRock() {
-        when(rpsSpy.opponentMove()).thenReturn("paper");
-        assertEquals("You tied", rpsSpy.result("rock"));
+        when(rpsSpy.opponentMove()).thenReturn("rock");
+        assertEquals("You tied!", rpsSpy.result("rock"));
     }
 
 //// all paper tests

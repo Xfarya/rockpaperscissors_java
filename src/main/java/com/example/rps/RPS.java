@@ -1,12 +1,14 @@
 package com.example.rps;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 public class RPS {
 
     public static String result;
     public static String opponentMove;
+    public static String[] rps = {"rock", "paper", "scissors"};
 
     public static void main(String[] args) {
     }
@@ -15,44 +17,43 @@ public class RPS {
         if (!isMyMoveValid(myMove)) {
             result = "Your move isn't valid";
         } else {
-            opponentMove = opponentMove();
-            if (opponentMove.equals(myMove)) {
-                result = "You tied!";
-            } else if (opponentMove.equals("scissors")) {
-                result = "You win";
-            } else if (opponentMove.equals("paper")) {
-                result = "You lose";
-            } else {
-                if (myMove.equals("paper") && opponentMove.equals("rock")) {
-                    result = "You win";
-                } else if (myMove.equals("paper") && opponentMove.equals("scissors")) {
-                    result = "You lose";
-                } else if (myMove.equals("paper") && opponentMove.equals("paper")) {
-                    result = "You tied!";
-                } else {
-                    if (myMove.equals("scissors") && opponentMove.equals("paper")) {
-                        result = "You win";
-                    } else if (myMove.equals("scissors") && opponentMove.equals("rock")) {
-                        result = "You lose";
-                    } else if (myMove.equals("scissors") && opponentMove.equals("scissors")) {
-                        result = "You tied!";
-                    }
-                }
-            }
+            decider(myMove);
         }
-            return result;
+        return result;
     }
 
     public boolean isMyMoveValid(String myMove) {
-        String[] rps = {"rock", "paper", "scissors"};
         return (Arrays.asList(rps).contains(myMove));
-    };
-
-    public String opponentMove() {
-        String[] rps = {"rock", "paper", "scissors"};
-        String computerMove = rps[new Random().nextInt(rps.length)];
-        return computerMove;
     }
 
+    public String opponentMove() {
+        String opponentMove = rps[new Random().nextInt(rps.length)];
+        return opponentMove;
+    }
+
+    public String decider(String myMove) {
+        opponentMove = opponentMove();
+        if (opponentMove.equals(myMove)) {
+            result = "You tied!";
+        } else {
+            winner(myMove, opponentMove);
+        }
+        return result;
+    }
+
+    public String winner(String myMove, String opponentMove) {
+
+        HashMap<String, String> winners = new HashMap<String, String>();
+        winners.put("rock", "scissors");
+        winners.put("paper", "rock");
+        winners.put("scissors", "paper");
+
+        if (winners.get(myMove) == opponentMove) {
+            result = "You win";
+        } else {
+            result = "You lose";
+        }
+        return result;
+    }
 }
 
