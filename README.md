@@ -4,6 +4,7 @@ This is a simple Rock, Paper, Scissors game made in Java. Focus is on TDD and ge
 **Run & Install**
 
 **Tests**
+**Coverage**
 ***Unit***
 ***Integration***
 
