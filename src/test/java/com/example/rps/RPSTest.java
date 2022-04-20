@@ -1,5 +1,7 @@
 package com.example.rps;
 
+import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Spy;
@@ -11,7 +13,9 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 
 class RPSTest {
+    RPS rps = new RPS();
     @Spy RPS rpsSpy = spy(RPS.class);
+
 // all rock tests
     @Test
     public void rockBeatsScissors() {
@@ -67,6 +71,23 @@ when(rpsSpy.opponentMove()).thenReturn("paper");
     public void scissorsTiesScissors() {
         when(rpsSpy.opponentMove()).thenReturn("scissors");
         assertEquals("You tied!", rpsSpy.result("scissors"));
+    }
+
+//user input validity
+    @Test
+    @DisplayName("checks user input validity")
+    public void isMyMoveValid() {
+        assertEquals("Your move isn't valid", rps.result(""));
+    }
+
+    @Test
+    public void isMyMoveValidExample2() {
+        assertEquals("Your move isn't valid", rps.result("jug"));
+    }
+
+    @Test
+    public void isMyMoveValidExample3() {
+        assertEquals("Your move isn't valid", rps.result("11"));
     }
 
 }
