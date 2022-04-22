@@ -34,26 +34,27 @@ public class RPS {
     public String decider(String myMove) {
         opponentMove = opponentMove();
         if (opponentMove.equals(myMove)) {
-            result = "You tied!";
+            result = "Your opponent chose: " + opponentMove + " \nYou tied!";
         } else {
-            winner(myMove, opponentMove);
+            winnersMap(myMove, opponentMove);
         }
         return result;
     }
 
-    public String winner(String myMove, String opponentMove) {
-
+    public String winnersMap(String myMove, String opponentMove) {
         HashMap<String, String> winners = new HashMap<String, String>();
         winners.put("rock", "scissors");
         winners.put("paper", "rock");
         winners.put("scissors", "paper");
 
-        if (winners.get(myMove) == opponentMove) {
-            result = "You win";
+        if (winners.get(myMove).equals(opponentMove)) {
+            result = "Your opponent chose: " + opponentMove + " \nYou win!";
         } else {
-            result = "You lose";
-        }
+            result = "Your opponent chose: " + opponentMove + " \nYou lose!";
+    }
         return result;
     }
+
 }
+
 
