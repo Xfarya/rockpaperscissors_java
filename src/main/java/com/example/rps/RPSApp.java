@@ -25,18 +25,18 @@ public class RPSApp {
             if (myMove.equals("q")) {
                 break;
             }
-            String rpsResult = rps.result(myMove);
-            System.out.print(rpsResult);
-            gamesCounter(rpsResult);
+            String rockPaperScissorsOutcome = rps.play(myMove);
+            System.out.print(rockPaperScissorsOutcome);
+            gamesCounter(rockPaperScissorsOutcome);
         }
     }
 
-    public static void gamesCounter(String rpsResult) {
-        if (rpsResult.contains("You tied")) {
+    public static void gamesCounter(String rockPaperScissorsOutcome) {
+        if (rockPaperScissorsOutcome.contains("You tied")) {
             drawsCounter += 1;
-        } else if (rpsResult.contains("You win")) {
+        } else if (rockPaperScissorsOutcome.contains("You win")) {
             winsCounter += 1;
-        } else {
+        } else if (rockPaperScissorsOutcome.contains("You lose")) {
             lossesCounter += 1;
         }
     }

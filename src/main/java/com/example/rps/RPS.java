@@ -13,11 +13,11 @@ public class RPS {
     public static void main(String[] args) {
     }
 
-    public String result(String myMove) {
+    public String play(String myMove) {
         if (!isMyMoveValid(myMove)) {
             result = "Your move isn't valid";
         } else {
-            decider(myMove);
+            decideWinner(myMove);
         }
         return result;
     }
@@ -27,22 +27,18 @@ public class RPS {
     }
 
     public String opponentMove() {
-        String opponentMove = rps[new Random().nextInt(rps.length)];
-        return opponentMove;
+        return rps[new Random().nextInt(rps.length)];
     }
 
-    public String decider(String myMove) {
+    public void decideWinner(String myMove) {
         opponentMove = opponentMove();
         if (opponentMove.equals(myMove)) {
             result = "Your opponent chose: " + opponentMove + " \nYou tied!";
-        } else {
-            winnersMap(myMove, opponentMove);
-        }
-        return result;
+        } else winnersMap(myMove, opponentMove);
     }
 
-    public String winnersMap(String myMove, String opponentMove) {
-        HashMap<String, String> winners = new HashMap<String, String>();
+    public void winnersMap(String myMove, String opponentMove) {
+        HashMap<String, String> winners = new HashMap<>();
         winners.put("rock", "scissors");
         winners.put("paper", "rock");
         winners.put("scissors", "paper");
@@ -52,7 +48,6 @@ public class RPS {
         } else {
             result = "Your opponent chose: " + opponentMove + " \nYou lose!";
     }
-        return result;
     }
 
 }
