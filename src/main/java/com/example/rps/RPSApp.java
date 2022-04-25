@@ -18,17 +18,23 @@ public class RPSApp {
     private static void gamePlay() {
         Scanner in = new Scanner(System.in);
         while (true) {
-            System.out.print("\nEnter your move, Type in rock, paper, or scissors. To quit, press 'q'");
-            System.out.print("\nI choose: ");
+            System.out.print("\nEnter your move, Type in rock, paper, or scissors. \nTo play computer, press 'a' for player 2 \nTo quit, press 'q'");
+            System.out.print("\nPlayer 1: ");
             String myMove = in.nextLine();
+            String player2Move;
+            String rockPaperScissorsOutcome = null;
 
             if (myMove.equals("q")) {
                 break;
             }
-            String rockPaperScissorsOutcome = rps.play(myMove);
-            System.out.print(rockPaperScissorsOutcome);
-            gamesCounter(rockPaperScissorsOutcome);
-        }
+            System.out.print("\nPlayer 2:");
+                player2Move = in.nextLine();
+
+
+                rockPaperScissorsOutcome = rps.play(myMove, player2Move);
+                System.out.print(rockPaperScissorsOutcome);
+                gamesCounter(rockPaperScissorsOutcome);
+            }
     }
 
     private static void gamesCounter(String rockPaperScissorsOutcome) {

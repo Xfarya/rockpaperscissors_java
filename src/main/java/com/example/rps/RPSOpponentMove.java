@@ -9,8 +9,10 @@ public class RPSOpponentMove {
     public static void main(String[] args) {
     }
 
-    public String opponentMove() {
-        return rps[new Random().nextInt(rps.length)];
+    public static String opponentMove(String choice) {
+        if (!(choice.equals("a"))) {
+            return choice;
+        }
+            return rps[new Random().nextInt(rps.length)];
     }
-
 }

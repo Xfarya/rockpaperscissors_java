@@ -13,27 +13,30 @@ public class RPS {
     public static void main(String[] args) {
     }
 
-    public String play(String myMove) {
+    public String play(String myMove, String oppMove) {
+            opponentMove = RPSOpponentMove.opponentMove(oppMove);
         if (!isMyMoveValid(myMove)) {
-            result = "Your move isn't valid";
-        } else {
+            result = "Player 1 move isn't valid";
+        }
+        else if (!isMyMoveValid(opponentMove)) {
+                result = "Player 2 move isn't valid"; }
+        else {
             decideWinner(myMove);
         }
         return result;
     }
 
-    private boolean isMyMoveValid(String myMove) {
-        return (Arrays.asList(rps).contains(myMove));
+    private boolean isMyMoveValid(String move) {
+        return (Arrays.asList(rps).contains(move));
     }
 
     private void decideWinner(String myMove) {
-        opponentMove = RPSOpponentMove.opponentMove();
         if (opponentMove.equals(myMove)) {
             result = "Your opponent chose: " + opponentMove + " \nYou tied!";
-        } else winnersMap(myMove, opponentMove);
+        } else winnersMap(myMove);
     }
 
-    private void winnersMap(String myMove, String opponentMove) {
+    private void winnersMap(String myMove) {
         HashMap<String, String> winners = new HashMap<>();
         winners.put("rock", "scissors");
         winners.put("paper", "rock");
@@ -46,13 +49,6 @@ public class RPS {
     }
     }
 
-    public void setRPSOpponentMove(com.example.rps.RPSOpponentMove rpsOpponentMove) {
-        this.RPSOpponentMove = rpsOpponentMove;
-    }
-
-    public com.example.rps.RPSOpponentMove getRPSOpponentMove() {
-        return RPSOpponentMove;
-    }
 }
 
 
