@@ -2,11 +2,11 @@ package com.example.rps;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Random;
 
 public class RPS {
 
     public static String result;
+    RPSOpponentMove RPSOpponentMove = new RPSOpponentMove();
     public static String opponentMove;
     public static String[] rps = {"rock", "paper", "scissors"};
 
@@ -22,22 +22,18 @@ public class RPS {
         return result;
     }
 
-    public boolean isMyMoveValid(String myMove) {
+    private boolean isMyMoveValid(String myMove) {
         return (Arrays.asList(rps).contains(myMove));
     }
 
-    public String opponentMove() {
-        return rps[new Random().nextInt(rps.length)];
-    }
-
-    public void decideWinner(String myMove) {
-        opponentMove = opponentMove();
+    private void decideWinner(String myMove) {
+        opponentMove = RPSOpponentMove.opponentMove();
         if (opponentMove.equals(myMove)) {
             result = "Your opponent chose: " + opponentMove + " \nYou tied!";
         } else winnersMap(myMove, opponentMove);
     }
 
-    public void winnersMap(String myMove, String opponentMove) {
+    private void winnersMap(String myMove, String opponentMove) {
         HashMap<String, String> winners = new HashMap<>();
         winners.put("rock", "scissors");
         winners.put("paper", "rock");
@@ -50,6 +46,13 @@ public class RPS {
     }
     }
 
+    public void setRPSOpponentMove(com.example.rps.RPSOpponentMove rpsOpponentMove) {
+        this.RPSOpponentMove = rpsOpponentMove;
+    }
+
+    public com.example.rps.RPSOpponentMove getRPSOpponentMove() {
+        return RPSOpponentMove;
+    }
 }
 
 

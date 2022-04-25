@@ -15,7 +15,7 @@ public class RPSApp {
         gameExitMessage();
        }
 
-    public static void gamePlay() {
+    private static void gamePlay() {
         Scanner in = new Scanner(System.in);
         while (true) {
             System.out.print("\nEnter your move, Type in rock, paper, or scissors. To quit, press 'q'");
@@ -31,7 +31,7 @@ public class RPSApp {
         }
     }
 
-    public static void gamesCounter(String rockPaperScissorsOutcome) {
+    private static void gamesCounter(String rockPaperScissorsOutcome) {
         if (rockPaperScissorsOutcome.contains("You tied")) {
             drawsCounter += 1;
         } else if (rockPaperScissorsOutcome.contains("You win")) {
@@ -41,7 +41,7 @@ public class RPSApp {
         }
     }
 
-    public static void gameExitMessage() {
+    private static void gameExitMessage() {
         System.out.println("\nThanks for playing! You won "
                 + winsCounter
                 + "/"
