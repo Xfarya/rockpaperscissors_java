@@ -1,34 +1,33 @@
 package com.example.rps;
 
-import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 
 public class RPS {
 
-    public static String result;
-    RPSOpponentMove RPSOpponentMove = new RPSOpponentMove();
-    public static String opponentMove;
-    public static String[] rps = {"rock", "paper", "scissors"};
+    private static String result;
+    MoveGenerator moveGenerator = new MoveGenerator();
+    private static String opponentMove;
 
     public static void main(String[] args) {
     }
 
-    public String play(String myMove, String oppMove) {
-            opponentMove = RPSOpponentMove.opponentMove(oppMove);
-        if (!isMyMoveValid(myMove)) {
-            result = "Player 1 move isn't valid";
+    public String play(String myMove, @NotNull String oppMove) {
+        opponentMove = oppMove;
+        if (oppMove.equals("a")) {
+            opponentMove = moveGenerator.getRandomMove();
         }
-        else if (!isMyMoveValid(opponentMove)) {
-                result = "Player 2 move isn't valid"; }
-        else {
+        if (!moveGenerator.isMyMoveValid(myMove)) {
+            result = "Player 1 move is not valid";
+        } else if (!moveGenerator.isMyMoveValid(opponentMove)) {
+                result = "Player 2 move is not valid";
+            } else {
             decideWinner(myMove);
         }
         return result;
     }
 
-    private boolean isMyMoveValid(String move) {
-        return (Arrays.asList(rps).contains(move));
-    }
 
     private void decideWinner(String myMove) {
         if (opponentMove.equals(myMove)) {

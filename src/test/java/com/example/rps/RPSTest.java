@@ -91,4 +91,8 @@ class RPSTest {
         assertEquals("Your move isn't valid", rps.play("paper", "11"));
     }
 
+    @Test
+        public void test() {
+        System.out.print(rps.play("rock", "rock"));
+    }
 }
