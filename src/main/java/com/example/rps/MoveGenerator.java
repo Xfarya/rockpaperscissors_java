@@ -11,7 +11,7 @@ public class MoveGenerator {
         return rps[new Random().nextInt(rps.length)];
     }
 
-    boolean isMyMoveValid(String move) {
+    public boolean isMyMoveValid(String move) {
         return (Arrays.asList(rps).contains(move));
     }
 }
