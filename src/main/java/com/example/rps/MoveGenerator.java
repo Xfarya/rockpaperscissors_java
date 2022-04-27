@@ -7,9 +7,6 @@ public class MoveGenerator {
 
     private static final String[] rps = {"rock", "paper", "scissors"};
 
-    public static void main(String[] args) {
-    }
-
     public String getRandomMove(){
         return rps[new Random().nextInt(rps.length)];
     }
