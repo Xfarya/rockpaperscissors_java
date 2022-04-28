@@ -13,86 +13,68 @@ class RPSTest {
 // all rock tests
     @Test
     public void rockBeatsScissors() {
-        assertEquals("Your opponent chose: scissors \nYou win!", rps.play("rock", "scissors"));
+        assertEquals("Player 1 chose: rock\n" +
+                "Player 2 chose: scissors \n" +
+                "Player 1 wins!", rps.play("rock", "scissors"));
     }
 
     @Test
     public void rockLosesPaper() {
-        assertEquals("Your opponent chose: paper \nYou lose!", rps.play("rock", "paper"));
+        assertEquals("Player 1 chose: rock\n" +
+                "Player 2 chose: paper \n" +
+                "Player 1 loses!", rps.play("rock", "paper"));
     }
 
     @Test
     public void rockTiesRock() {
-        assertEquals("Your opponent chose: rock \nYou tied!", rps.play("rock", "rock"));
+        assertEquals("Player 1 chose rock\n" +
+                "Player 2 chose: rock \n" +
+                "Both tied!", rps.play("rock", "rock"));
     }
 
 //// all paper tests
     @Test
     public void paperBeatsRock() {
-    assertEquals("Your opponent chose: rock \nYou win!", rps.play("paper", "rock"));
+    assertEquals("Player 1 chose: paper\n" +
+            "Player 2 chose: rock \n" +
+            "Player 1 wins!", rps.play("paper", "rock"));
     }
 //
     @Test
     public void paperLosesScissors() {
-        assertEquals("Your opponent chose: scissors \nYou lose!", rps.play("paper", "scissors"));
+        assertEquals("Player 1 chose: paper\n" +
+                "Player 2 chose: scissors \n" +
+                "Player 1 loses!", rps.play("paper", "scissors"));
     }
 //
     @Test
     public void paperTiesPaper() {
-        assertEquals("Your opponent chose: paper \nYou tied!", rps.play("paper", "paper"));
+        assertEquals("Player 1 chose paper\n" +
+                "Player 2 chose: paper \n" +
+                "Both tied!", rps.play("paper", "paper"));
     }
 //
 ////all scissors tests
     @Test
     public void scissorsBeatPaper() {
-        assertEquals("Your opponent chose: paper \nYou win!", rps.play("scissors", "paper"));
+        assertEquals("Player 1 chose: scissors\n" +
+                "Player 2 chose: paper \n" +
+                "Player 1 wins!", rps.play("scissors", "paper"));
     }
 //
     @Test
     public void scissorsLosesRock() {
-        assertEquals("Your opponent chose: rock \nYou lose!", rps.play("scissors", "rock"));
+        assertEquals("Player 1 chose: scissors\n" +
+                "Player 2 chose: rock \n" +
+                "Player 1 loses!", rps.play("scissors", "rock"));
     }
 //
     @Test
     public void scissorsTiesScissors() {
-        assertEquals("Your opponent chose: scissors \nYou tied!", rps.play("scissors", "scissors"));
+        assertEquals("Player 1 chose scissors\n" +
+                "Player 2 chose: scissors \n" +
+                "Both tied!", rps.play("scissors", "scissors"));
     }
 
 //user input validity
-    @Test
-    @DisplayName("checks user input validity")
-    public void isMyMoveValid() {
-        assertEquals("Your move isn't valid", rps.play("", "paper"));
-    }
-
-    @Test
-    public void isMyMoveValidExample2() {
-        assertEquals("Your move isn't valid", rps.play("jug", "paper"));
-    }
-
-    @Test
-    public void isMyMoveValidExample3() {
-        assertEquals("Your move isn't valid", rps.play("11", "paper"));
-    }
-
-    @Test
-    @DisplayName("checks user input validity")
-    public void isPlayer2Valid() {
-        assertEquals("Your move isn't valid", rps.play("paper", ""));
-    }
-
-    @Test
-    public void isPlayer2ValidExample2() {
-        assertEquals("Your move isn't valid", rps.play("paper", "jug"));
-    }
-
-    @Test
-    public void isPlayer2ValidExample3() {
-        assertEquals("Your move isn't valid", rps.play("paper", "11"));
-    }
-
-    @Test
-        public void test() {
-        System.out.print(rps.play("rock", "rock"));
-    }
 }

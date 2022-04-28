@@ -2,17 +2,15 @@ package com.example.rps;
 
 import java.util.Scanner;
 
+
 public class RPSApp {
 
-    public static int lossesCounter = 0;
-    public static int winsCounter = 0;
-    public static int drawsCounter = 0;
-
     static RPS rps = new RPS();
+    static MoveGenerator moveGenerator = new MoveGenerator();
+    static ScoreCounter scoreCounter = new ScoreCounter();
 
     public static void main(String[] args) {
         gamePlay();
-        gameExitMessage();
        }
 
     private static void gamePlay() {
@@ -21,42 +19,59 @@ public class RPSApp {
             System.out.print("\nEnter your move, Type in rock, paper, or scissors. \nTo play computer, press 'a' for player 2 \nTo quit, press 'q'");
             System.out.print("\nPlayer 1: ");
             String myMove = in.nextLine();
+            myMove = repeatUntilCorrectMove(myMove);
+            if (myMove.equals("q")) {
+                gameExitMessage();
+                break;
+            };
+
             String player2Move;
             String rockPaperScissorsOutcome = null;
 
-            if (myMove.equals("q")) {
-                break;
-            }
             System.out.print("\nPlayer 2:");
-                player2Move = in.nextLine();
+            player2Move = in.nextLine();
+            player2Move = repeatUntilCorrectMove(player2Move);
+            if (player2Move.equals("q")) {
+                gameExitMessage();
+                break;
+            };
 
-
-                rockPaperScissorsOutcome = rps.play(myMove, player2Move);
-                System.out.print(rockPaperScissorsOutcome);
-                gamesCounter(rockPaperScissorsOutcome);
-            }
-    }
-
-    private static void gamesCounter(String rockPaperScissorsOutcome) {
-        if (rockPaperScissorsOutcome.contains("You tied")) {
-            drawsCounter += 1;
-        } else if (rockPaperScissorsOutcome.contains("You win")) {
-            winsCounter += 1;
-        } else if (rockPaperScissorsOutcome.contains("You lose")) {
-            lossesCounter += 1;
+            rockPaperScissorsOutcome = rps.play(myMove, player2Move);
+            System.out.print(rockPaperScissorsOutcome);
+            scoreCounter.gamesCounter(rockPaperScissorsOutcome);
         }
     }
 
     private static void gameExitMessage() {
         System.out.println("\nThanks for playing! You won "
-                + winsCounter
+                + scoreCounter.winsCounter
                 + "/"
-                + (drawsCounter + lossesCounter + winsCounter)
+                + (scoreCounter.drawsCounter + scoreCounter.lossesCounter + scoreCounter.winsCounter)
                 + " games. well done!\n"
-                + "\nwins: " + winsCounter
+                + "\nwins: " + scoreCounter.winsCounter
                 + " || losses: "
-                + lossesCounter
+                + scoreCounter.lossesCounter
                 + " || ties: "
-                + drawsCounter);
+                + scoreCounter.drawsCounter);
+    }
+
+
+    private static String repeatUntilCorrectMove(String move) {
+        Scanner in = new Scanner(System.in);
+        while (true) {
+            if (move.equals("q")) {
+                return move;
+            }
+            if (move.equals("a")) {
+                move = moveGenerator.getRandomMove();
+            }
+            else if (!moveGenerator.isMyMoveValid(move)) {
+                System.out.println("Player move is not valid, please enter a valid move:\nPlayer: ");
+                move = in.nextLine();
+            } else {
+                break;
+            }
+        }
+        return move;
     }
 }

@@ -7,44 +7,35 @@ import java.util.HashMap;
 public class RPS {
 
     private static String result;
-    MoveGenerator moveGenerator = new MoveGenerator();
-    private static String opponentMove;
+    private static String player2Move;
+    private static String player1Move;
 
     public static void main(String[] args) {
     }
 
     public String play(String myMove, @NotNull String oppMove) {
-        opponentMove = oppMove;
-        if (oppMove.equals("a")) {
-            opponentMove = moveGenerator.getRandomMove();
-        }
-        if (!moveGenerator.isMyMoveValid(myMove)) {
-            result = "Player 1 move is not valid";
-        } else if (!moveGenerator.isMyMoveValid(opponentMove)) {
-                result = "Player 2 move is not valid";
-            } else {
-            decideWinner(myMove);
-        }
+        this.player2Move = oppMove;
+        this.player1Move = myMove;
+        decideWinner();
         return result;
     }
 
-
-    private void decideWinner(String myMove) {
-        if (opponentMove.equals(myMove)) {
-            result = "Your opponent chose: " + opponentMove + " \nYou tied!";
-        } else winnersMap(myMove);
+    private void decideWinner() {
+        if (player2Move.equals(player1Move)) {
+            result = "Player 1 chose " + player1Move + "\nPlayer 2 chose: " + player2Move + " \nBoth tied!";
+        } else winnersMap();
     }
 
-    private void winnersMap(String myMove) {
+    private void winnersMap() {
         HashMap<String, String> winners = new HashMap<>();
         winners.put("rock", "scissors");
         winners.put("paper", "rock");
         winners.put("scissors", "paper");
 
-        if (winners.get(myMove).equals(opponentMove)) {
-            result = "Your opponent chose: " + opponentMove + " \nYou win!";
+        if (winners.get(player1Move).equals(player2Move)) {
+            result = "Player 1 chose: " + player1Move + "\nPlayer 2 chose: " + player2Move + " \nPlayer 1 wins!";
         } else {
-            result = "Your opponent chose: " + opponentMove + " \nYou lose!";
+            result = "Player 1 chose: " + player1Move + "\nPlayer 2 chose: " + player2Move + " \nPlayer 1 loses!";
     }
     }
 
